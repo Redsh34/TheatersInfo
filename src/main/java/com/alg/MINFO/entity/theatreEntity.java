@@ -3,7 +3,7 @@ package com.alg.MINFO.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "theatreInfo")
+@Table(name = "ALGDB")
 public class theatreEntity {
 
     @Id
