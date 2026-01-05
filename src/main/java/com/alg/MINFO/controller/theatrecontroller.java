@@ -3,6 +3,7 @@ package com.alg.MINFO.controller;
 import com.alg.MINFO.dto.theatredto;
 import com.alg.MINFO.service.theatreservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,22 @@ public class theatrecontroller {
        List<theatredto> res= ser.retrive();
        return ResponseEntity.ok(res);
    }
+
+   @GetMapping("/getByName")
+   public ResponseEntity<theatredto> getTheatreDetailsByName(@RequestParam String theatreName){
+     theatredto res= ser.getTheatreDetailsByName(theatreName);
+     return ResponseEntity.ok(res);
+   }
+
+   @DeleteMapping("/deleteByName")
+    public ResponseEntity<String> deleteTheatreByName(@RequestParam String theatreName){
+     String res= ser.deleteTheatreByName(theatreName);
+     if(res.equals("THEATRE REMOVED FROM DB")){
+         return ResponseEntity.ok(res);
+     }
+     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
+   }
+
 
 
 }

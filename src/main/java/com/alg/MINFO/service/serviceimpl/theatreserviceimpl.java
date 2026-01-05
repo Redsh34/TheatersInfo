@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class theatreserviceimpl implements theatreservice {
@@ -51,5 +52,28 @@ public class theatreserviceimpl implements theatreservice {
             return null;
         }
         return dto;
+    }
+
+    @Override
+    public theatredto getTheatreDetailsByName(String theatreName) {
+       theatreEntity res= repo.getTheatreDetailsByName(theatreName);
+       if(res!=null){
+           theatredto dto= new theatredto();
+           dto.setTheatreName(res.getTheatreName());
+           dto.setCity(res.getCity());
+           dto.setMaps(res.getMaps());
+           return dto;
+       }
+       return null;
+    }
+
+    @Override
+    public String deleteTheatreByName(String theatreName) {
+        int res= repo.deleteTheatreByName(theatreName);
+        if(res==1){
+            return "THEATRE REMOVED FROM DB";
+        }
+        return "NO THEATRE FOUND WITH THIS NAME";
+
     }
 }
