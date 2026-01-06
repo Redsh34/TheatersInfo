@@ -4,6 +4,7 @@ import com.alg.MINFO.dto.theatredto;
 import com.alg.MINFO.entity.theatreEntity;
 import com.alg.MINFO.repo.theatrerepo;
 import com.alg.MINFO.service.theatreservice;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,8 @@ public class theatreserviceimpl implements theatreservice {
 
     @Override
     public theatredto getTheatreDetailsByName(String theatreName) {
-       theatreEntity res= repo.getTheatreDetailsByName(theatreName);
+        theatreEntity res = repo.getTheatreDetailsByName(theatreName)
+                .orElse(null);
        if(res!=null){
            theatredto dto= new theatredto();
            dto.setTheatreName(res.getTheatreName());
@@ -76,4 +78,43 @@ public class theatreserviceimpl implements theatreservice {
         return "NO THEATRE FOUND WITH THIS NAME";
 
     }
+
+    @Override
+    @Transactional
+    public String updateFullInfo(String theatreName, theatredto dto) {
+
+        theatreEntity res = repo.getTheatreDetailsByName(theatreName)
+                .orElse(null);
+
+        if (res == null) {
+            return "No Theatre Found with this Name";
+        }
+
+        res.setTheatreName(dto.getTheatreName());
+        res.setCity(dto.getCity());
+        res.setMaps(dto.getMaps());
+
+        return "Successfully Updated the details";
+    }
+
+    @Override
+    @Transactional
+    public String patch(String theatreName, theatredto dto) {
+        theatreEntity res= repo.getTheatreDetailsByName(theatreName)
+                .orElse(null);
+        if(res==null){
+            return "Theatre Not Found With That Name";
+        }
+        if(dto.getTheatreName()!=null){
+            res.setTheatreName(dto.getTheatreName());
+        }
+        if(dto.getCity()!=null){
+            res.setCity(dto.getCity());
+        }
+        if(dto.getMaps()!=null){
+            res.setMaps(dto.getMaps());
+        }
+        return "SuccessFully Modified the details";
+    }
+
 }

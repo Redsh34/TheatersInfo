@@ -17,7 +17,7 @@ public interface theatrerepo extends JpaRepository<theatreEntity,Long> {
     List<theatreEntity> getTheatreDetails();
 
     @Query("SELECT t FROM theatreEntity t WHERE t.theatreName = :theatreName")
-    theatreEntity getTheatreDetailsByName(String theatreName);
+    Optional<theatreEntity> getTheatreDetailsByName(String theatreName);
     @Modifying
     @Transactional
     @Query("DELETE FROM theatreEntity t where t.theatreName = :theatreName")

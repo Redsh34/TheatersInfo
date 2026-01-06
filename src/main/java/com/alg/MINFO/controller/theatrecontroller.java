@@ -25,6 +25,7 @@ public class theatrecontroller {
    @GetMapping("/getTheatreInfo")
     public ResponseEntity<List<theatredto>> getdetails(){
        List<theatredto> res= ser.retrive();
+
        return ResponseEntity.ok(res);
    }
 
@@ -43,6 +44,15 @@ public class theatrecontroller {
      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
    }
 
-
+   @PutMapping("/update")
+   public ResponseEntity<String> updateEntity(@RequestParam String theatreName, @RequestBody theatredto dto){
+        String res= ser.updateFullInfo(theatreName,dto);
+        return ResponseEntity.ok(res);
+   }
+   @PutMapping("/updatefeilds")
+  public ResponseEntity<String> patch(@RequestParam String theatreName,@RequestBody theatredto dto){
+     String res= ser.patch(theatreName,dto);
+     return ResponseEntity.ok(res);
+  }
 
 }

@@ -11,4 +11,6 @@ public interface theatreservice {
     public List<theatredto> retrive();
     public theatredto getTheatreDetailsByName(String theatreName);
     public String deleteTheatreByName(String theatreName);
+    public String updateFullInfo(String theatreName,theatredto dto);
+    public String patch(String theatreName,theatredto dto);
 }
