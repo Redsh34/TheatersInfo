@@ -2,6 +2,8 @@ package com.alg.MINFO.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ALGDB")
 public class theatreEntity {
@@ -13,6 +15,8 @@ public class theatreEntity {
     private String city;
     @Column(length = 500)
     private String maps;
+    @ManyToMany(mappedBy = "theatres")
+    private List<MovieEntity> movies;
     public long getId() {
         return id;
     }
@@ -32,6 +36,12 @@ public class theatreEntity {
 
     public void setCity(String theatreLocation) {
         this.city = theatreLocation;
+    }
+    public void setMovies(List<MovieEntity> movies){
+        this.movies=movies;
+    }
+    public List<MovieEntity> getMovies(){
+        return movies;
     }
     public String getMaps(){
         return maps;

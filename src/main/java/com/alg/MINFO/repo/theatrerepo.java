@@ -21,5 +21,7 @@ public interface theatrerepo extends JpaRepository<theatreEntity,Long> {
     @Modifying
     @Transactional
     @Query("DELETE FROM theatreEntity t where t.theatreName = :theatreName")
-     int deleteTheatreByName(String theatreName);
+    int deleteTheatreByName(String theatreName);
+    @Query("SELECT t FROM MovieEntity m JOIN m.theatres t WHERE m.movieName =:movieName")
+    List<theatreEntity> findTheatreByName(String movieName);
 }
