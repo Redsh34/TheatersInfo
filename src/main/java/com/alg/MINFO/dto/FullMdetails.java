@@ -2,7 +2,15 @@ package com.alg.MINFO.dto;
 
 import java.util.List;
 
-public class MovieDTO {
+public class FullMdetails {
+
+    private String movieName;
+    private String posterUrl;
+    private String language;
+    private String plot;
+    private List<String> theatredetails;
+
+
     public String getMovieName() {
         return movieName;
     }
@@ -10,9 +18,6 @@ public class MovieDTO {
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-
-    private String movieName;
-
     public String getLanguage() {
         return language;
     }
@@ -20,16 +25,28 @@ public class MovieDTO {
     public String getPosterUrl() {
         return posterUrl;
     }
+
     public void setPosterUrl(String posterUrl) {
         this.posterUrl = posterUrl;
     }
 
-    private String posterUrl;
-
     public void setLanguage(String language) {
         this.language = language;
     }
+    public List<String> getTheatredetails() {
+        return theatredetails;
+    }
 
-    private String language;
+    public void setTheatredetails(List<String> theatredetails) {
+        this.theatredetails = theatredetails;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
 }
 

@@ -65,4 +65,19 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "theatre_id")
     )
     private List<theatreEntity> theatres;
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    @Column(length=1000)
+    private String plot;
+
+    @ManyToMany
+    @JoinTable(name ="movie_cast",joinColumns = @JoinColumn(name ="movie_id"),inverseJoinColumns= @JoinColumn(name ="cast_id"))
+    private List<CastEntity> centity;
 }

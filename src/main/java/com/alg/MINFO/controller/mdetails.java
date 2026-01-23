@@ -1,13 +1,15 @@
 package com.alg.MINFO.controller;
 
+import com.alg.MINFO.dto.FullMdetails;
 import com.alg.MINFO.dto.MovieDTO;
 import com.alg.MINFO.service.mservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/movie")
@@ -17,11 +19,20 @@ public class mdetails {
     private mservice ms;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody MovieDTO dto){
+    public ResponseEntity<String> save(@RequestBody FullMdetails dto){
         String res= ms.saveMovie(dto);
         if(res.equals("MOVIE DETAILS SAVED SUCCESSFULLY")){
             return ResponseEntity.ok("MOVIE DETAILS SAVED SUCCESSFULLY");
         }
         return ResponseEntity.badRequest().body("Invalid data");
+    }
+
+    @GetMapping("/getMovies")
+    public ResponseEntity<List<MovieDTO>> getdetails(){
+        List<MovieDTO> dto= ms.getMovies();
+        if(dto==null || dto.isEmpty()){
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+        return ResponseEntity.ok(dto);
     }
 }
