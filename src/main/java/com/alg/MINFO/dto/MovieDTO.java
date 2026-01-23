@@ -1,5 +1,7 @@
 package com.alg.MINFO.dto;
 
+import java.util.List;
+
 public class MovieDTO {
     public String getMovieName() {
         return movieName;
@@ -30,5 +32,15 @@ public class MovieDTO {
     }
 
     private String language;
+
+    public List<String> getTheatredetails() {
+        return theatredetails;
+    }
+
+    public void setTheatredetails(List<String> theatredetails) {
+        this.theatredetails = theatredetails;
+    }
+
+    private List<String> theatredetails;
 }
 

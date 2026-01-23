@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+
 public interface movierepo extends JpaRepository<MovieEntity,Long> {
    Optional<MovieEntity> findByMovieName(String movieName);
 }
