@@ -9,8 +9,11 @@ import java.util.Optional;
 
 
 public interface movierepo extends JpaRepository<MovieEntity,Long> {
-   Optional<MovieEntity> findByMovieName(String movieName);
+
+    @Query("SELECT t FROM MovieEntity t WHERE t.movieName = :movieName")
+   MovieEntity findByMovieName(String movieName);
 
    @Query("SELECT t FROM MovieEntity t")
    List<MovieEntity> findAll();
+
 }

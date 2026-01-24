@@ -2,6 +2,7 @@ package com.alg.MINFO.controller;
 
 import com.alg.MINFO.dto.FullMdetails;
 import com.alg.MINFO.dto.MovieDTO;
+import com.alg.MINFO.dto.Movieres;
 import com.alg.MINFO.service.mservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,5 +35,14 @@ public class mdetails {
             return ResponseEntity.ok(Collections.emptyList());
         }
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/getMovie")
+    public ResponseEntity<Movieres> getMovieByName(@RequestParam String MovieName){
+        Movieres res= ms.getMovie(MovieName);
+        if(res==null){
+            return ResponseEntity.ok(new Movieres());
+        }
+        return ResponseEntity.ok(res);
     }
 }
