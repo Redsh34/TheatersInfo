@@ -86,4 +86,22 @@ public class mservieImpl implements mservice {
        return dto;
 
     }
+
+    @Override
+    public String deleteMovie(String MovieName) {
+        int res= mrepo.deleteMovieByName(MovieName);
+        if(res>0){
+            return "succesfully deleted the Movie";
+        }
+        return "NOT FOUND!!";
+    }
+
+//    @Override
+//    public String update(String MovieName, Movieres dto) {
+//       MovieEntity res= mrepo.findByMovieName(MovieName);
+//       if(dto.getTheatredetails()!=null){
+//
+//           res.setTheatres();
+//       }
+//    }
 }

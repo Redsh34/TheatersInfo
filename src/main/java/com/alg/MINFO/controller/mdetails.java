@@ -45,4 +45,11 @@ public class mdetails {
         }
         return ResponseEntity.ok(res);
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteMovieByName(@RequestParam String MovieName){
+        String res= ms.deleteMovie(MovieName);
+        return ResponseEntity.ok(res);
+    }
+
 }
