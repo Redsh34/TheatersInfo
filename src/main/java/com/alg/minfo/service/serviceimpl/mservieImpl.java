@@ -1,14 +1,14 @@
-package com.alg.MINFO.service.serviceimpl;
+package com.alg.minfo.service.serviceimpl;
 
-import com.alg.MINFO.dto.FullMdetails;
-import com.alg.MINFO.dto.MovieDTO;
-import com.alg.MINFO.dto.Movieres;
-import com.alg.MINFO.dto.theatredto;
-import com.alg.MINFO.entity.MovieEntity;
-import com.alg.MINFO.entity.theatreEntity;
-import com.alg.MINFO.repo.movierepo;
-import com.alg.MINFO.repo.theatrerepo;
-import com.alg.MINFO.service.mservice;
+import com.alg.minfo.dto.FullMdetails;
+import com.alg.minfo.dto.MovieDTO;
+import com.alg.minfo.dto.Movieres;
+import com.alg.minfo.dto.theatredto;
+import com.alg.minfo.entity.MovieEntity;
+import com.alg.minfo.entity.theatreEntity;
+import com.alg.minfo.repo.movierepo;
+import com.alg.minfo.repo.theatrerepo;
+import com.alg.minfo.service.mservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +28,11 @@ public class mservieImpl implements mservice {
        if(moviedto.getMovieName()==null || moviedto.getTheatredetails()==null) {
            return "INVALID DATA";
        }
-        MovieEntity en= new MovieEntity();
+
+       MovieEntity en= new MovieEntity();
         en.setMovieName(moviedto.getMovieName());
-        en.setPosterUrl(moviedto.getPosterUrl());
         en.setLanguage(moviedto.getLanguage());
-        en.setPlot(moviedto.getPlot());
+
         List<theatreEntity> details= new ArrayList<>();
         for(String theatreName : moviedto.getTheatredetails()){
             theatreEntity t= trepo.getTheatreDetailsByName(theatreName).
@@ -95,6 +95,8 @@ public class mservieImpl implements mservice {
         }
         return "NOT FOUND!!";
     }
+
+
 
 //    @Override
 //    public String update(String MovieName, Movieres dto) {

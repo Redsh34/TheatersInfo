@@ -1,7 +1,7 @@
-package com.alg.MINFO.controller;
+package com.alg.minfo.controller;
 
-import com.alg.MINFO.dto.theatredto;
-import com.alg.MINFO.service.theatreservice;
+import com.alg.minfo.dto.theatredto;
+import com.alg.minfo.service.theatreservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

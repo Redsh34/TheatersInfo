@@ -1,4 +1,4 @@
-package com.alg.MINFO.entity;
+package com.alg.minfo.entity;
 
 import jakarta.persistence.*;
 

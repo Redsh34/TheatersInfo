@@ -1,16 +1,15 @@
-package com.alg.MINFO.service.serviceimpl;
+package com.alg.minfo.service.serviceimpl;
 
-import com.alg.MINFO.dto.theatredto;
-import com.alg.MINFO.entity.theatreEntity;
-import com.alg.MINFO.repo.theatrerepo;
-import com.alg.MINFO.service.theatreservice;
+import com.alg.minfo.dto.theatredto;
+import com.alg.minfo.entity.theatreEntity;
+import com.alg.minfo.repo.theatrerepo;
+import com.alg.minfo.service.theatreservice;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class theatreserviceimpl implements theatreservice {

@@ -1,7 +1,6 @@
-package com.alg.MINFO.service;
+package com.alg.minfo.service;
 
-import com.alg.MINFO.dto.theatredto;
-import org.springframework.stereotype.Service;
+import com.alg.minfo.dto.theatredto;
 
 import java.util.List;
 

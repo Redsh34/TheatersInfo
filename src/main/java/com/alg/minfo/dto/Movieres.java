@@ -1,4 +1,4 @@
-package com.alg.MINFO.dto;
+package com.alg.minfo.dto;
 
 import java.util.List;
 

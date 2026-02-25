@@ -1,7 +1,7 @@
-package com.alg.MINFO.dto;
+package com.alg.minfo.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.persistence.Column;
+
 @JsonPropertyOrder({
         "theatreName",
         "city",

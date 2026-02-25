@@ -1,6 +1,4 @@
-package com.alg.MINFO.dto;
-
-import java.util.List;
+package com.alg.minfo.dto;
 
 public class MovieDTO {
     public String getMovieName() {

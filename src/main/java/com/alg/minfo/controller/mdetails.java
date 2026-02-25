@@ -1,14 +1,13 @@
-package com.alg.MINFO.controller;
+package com.alg.minfo.controller;
 
-import com.alg.MINFO.dto.FullMdetails;
-import com.alg.MINFO.dto.MovieDTO;
-import com.alg.MINFO.dto.Movieres;
-import com.alg.MINFO.service.mservice;
+import com.alg.minfo.dto.FullMdetails;
+import com.alg.minfo.dto.MovieDTO;
+import com.alg.minfo.dto.Movieres;
+import com.alg.minfo.service.mservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +17,6 @@ public class mdetails {
 
     @Autowired
     private mservice ms;
-
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody FullMdetails dto){
         String res= ms.saveMovie(dto);
@@ -36,7 +34,6 @@ public class mdetails {
         }
         return ResponseEntity.ok(dto);
     }
-
     @GetMapping("/getMovie")
     public ResponseEntity<Movieres> getMovieByName(@RequestParam String MovieName){
         Movieres res= ms.getMovie(MovieName);

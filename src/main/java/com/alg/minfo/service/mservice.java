@@ -1,9 +1,8 @@
-package com.alg.MINFO.service;
+package com.alg.minfo.service;
 
-import com.alg.MINFO.dto.FullMdetails;
-import com.alg.MINFO.dto.MovieDTO;
-import com.alg.MINFO.dto.Movieres;
-import com.alg.MINFO.dto.theatredto;
+import com.alg.minfo.dto.FullMdetails;
+import com.alg.minfo.dto.MovieDTO;
+import com.alg.minfo.dto.Movieres;
 
 import java.util.List;
 

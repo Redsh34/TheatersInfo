@@ -1,4 +1,4 @@
-package com.alg.MINFO.config;
+package com.alg.minfo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
