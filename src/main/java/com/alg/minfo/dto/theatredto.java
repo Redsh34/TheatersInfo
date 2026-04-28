@@ -2,12 +2,14 @@ package com.alg.minfo.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
+
 @JsonPropertyOrder({
         "theatreName",
         "city",
         "maps"
 })
-public class theatredto {
+public class theatredto implements Serializable {
     private String theatreName;
     private String city;
 

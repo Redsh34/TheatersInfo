@@ -1,17 +1,18 @@
 package com.alg.minfo.service.serviceimpl;
 
-import com.alg.minfo.dto.FullMdetails;
-import com.alg.minfo.dto.MovieDTO;
-import com.alg.minfo.dto.Movieres;
-import com.alg.minfo.dto.theatredto;
+import com.alg.minfo.dto.*;
 import com.alg.minfo.entity.MovieEntity;
 import com.alg.minfo.entity.theatreEntity;
 import com.alg.minfo.repo.movierepo;
 import com.alg.minfo.repo.theatrerepo;
 import com.alg.minfo.service.mservice;
+//import jakarta.persistence.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +25,20 @@ public class mservieImpl implements mservice {
     @Autowired
     private theatrerepo trepo;
     @Override
-    public String saveMovie(FullMdetails moviedto) {
-       if(moviedto.getMovieName()==null || moviedto.getTheatredetails()==null) {
+    @CacheEvict(value = "movies", allEntries = true)
+    public String saveMovie(TMDBMovie moviedto) {
+       if(moviedto.getTitle()==null || moviedto.getTheatredetails()==null) {
            return "INVALID DATA";
        }
 
        MovieEntity en= new MovieEntity();
-        en.setMovieName(moviedto.getMovieName());
-        en.setLanguage(moviedto.getLanguage());
+        en.setMovieName(moviedto.getTitle());
+        en.setLanguage(moviedto.getOriginal_language());
+        if (moviedto.getPoster_path() != null) {
+            en.setPosterUrl("https://image.tmdb.org/t/p/w500" + moviedto.getPoster_path());
+        }
+        LocalDate releaseDate = LocalDate.parse(moviedto.getRelease_date());
+        en.setReleaseDate(releaseDate);
 
         List<theatreEntity> details= new ArrayList<>();
         for(String theatreName : moviedto.getTheatredetails()){
@@ -44,7 +51,9 @@ public class mservieImpl implements mservice {
         return "MOVIE DETAILS SAVED SUCCESSFULLY";
     }
 
+    @Cacheable("movies")
     public List<MovieDTO> getMovies(){
+        System.out.println("DB CALL - getMovies");
         List<MovieEntity> en = mrepo.findAll();
         if(en==null){
             return null;
@@ -62,7 +71,9 @@ public class mservieImpl implements mservice {
     }
 
     @Override
+    @Cacheable(value="movie" ,key ="#MovieName")
     public Movieres getMovie(String MovieName) {
+        System.out.println("DB CALL - getMovie");
        MovieEntity en= mrepo.findByMovieName(MovieName);
        if(en==null){
            return null;
@@ -71,7 +82,7 @@ public class mservieImpl implements mservice {
        dto.setMovieName(en.getMovieName());
        dto.setPosterUrl(en.getPosterUrl());
        dto.setLanguage(en.getLanguage());
-       dto.setPlot(en.getPlot());
+       dto.setReleaseDate(en.getReleaseDate().toString());
        List<theatredto> tlist= new ArrayList<>();
        List<theatreEntity> res= en.getTheatres();
        for(int i=0;i<res.size();i++){
@@ -88,6 +99,7 @@ public class mservieImpl implements mservice {
     }
 
     @Override
+    @CacheEvict(value ={"movies","movie"}, allEntries = true)
     public String deleteMovie(String MovieName) {
         int res= mrepo.deleteMovieByName(MovieName);
         if(res>0){

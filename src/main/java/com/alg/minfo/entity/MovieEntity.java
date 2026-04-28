@@ -2,6 +2,7 @@ package com.alg.minfo.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -66,16 +67,16 @@ public class MovieEntity {
     )
     private List<theatreEntity> theatres;
 
-    public String getPlot() {
-        return plot;
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setPlot(String plot) {
-        this.plot = plot;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    @Column(length=1000)
-    private String plot;
+    private LocalDate releaseDate;
 
     @ManyToMany
     @JoinTable(name ="movie_cast",joinColumns = @JoinColumn(name ="movie_id"),inverseJoinColumns= @JoinColumn(name ="cast_id"))

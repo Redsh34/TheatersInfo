@@ -11,3 +11,35 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka/
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      paymentServiceCB:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+tmdb:
+  base-url: https://api.themoviedb.org/3
+  bearer-token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYTM5ZGNlMGI4OTc0MzYyYjE5YzExYjViOWQ2MDkzNCIsIm5iZiI6MTc3MDI5MjU5Mi41MDgsInN1YiI6IjY5ODQ4NTcwNDUzZjZkMjFlYTM2MzdhZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sS4qzQKRbmEowvgm6IRud9h5clvfBnGBjsDcxCrvlLI

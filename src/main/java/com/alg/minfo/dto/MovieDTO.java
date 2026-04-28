@@ -1,6 +1,8 @@
 package com.alg.minfo.dto;
 
-public class MovieDTO {
+import java.io.Serializable;
+
+public class MovieDTO  implements Serializable {
     public String getMovieName() {
         return movieName;
     }

@@ -51,6 +51,7 @@ public class theatreserviceimpl implements theatreservice {
         }else{
             return null;
         }
+        System.out.println(dto);
         return dto;
     }
 

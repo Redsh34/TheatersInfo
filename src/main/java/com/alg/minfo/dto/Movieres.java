@@ -1,13 +1,23 @@
 package com.alg.minfo.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Movieres{
+public class Movieres implements Serializable {
 
     private String movieName;
     private String posterUrl;
     private String language;
-    private String plot;
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    private String releaseDate;
     private List<theatredto> theatredetails;
 
 
@@ -41,12 +51,6 @@ public class Movieres{
         this.theatredetails = theatredetails;
     }
 
-    public String getPlot() {
-        return plot;
-    }
 
-    public void setPlot(String plot) {
-        this.plot = plot;
-    }
 }
 
